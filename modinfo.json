@@ -1,0 +1,12 @@
+{
+    "type": "code",
+    "side": "Universal",
+    "modid": "nomorefallingfuel",
+    "name": "No More Falling Fuel",
+    "authors": ["Neimoon"],
+    "description": "Prevents charcoal piles and coal piles (including coke) from collapsing or falling. Fuel stacks now behave like peat and firewood.",
+    "version": "1.0.0",
+    "dependencies": {
+        "game": "1.21.6"
+    }
+}

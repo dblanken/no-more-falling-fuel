@@ -1,0 +1,16 @@
+# Build outputs
+bin/
+obj/
+Releases/
+*.dll
+*.zip
+
+# IDE
+.vs/
+*.user
+*.suo
+.idea/
+
+# Claude
+CLAUDE.md
+.claude/
