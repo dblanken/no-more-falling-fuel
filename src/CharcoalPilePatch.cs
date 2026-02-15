@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using HarmonyLib;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
@@ -26,20 +27,27 @@ namespace NoMoreFallingFuel
         {
             if (instance.block is BlockCharcoalPile)
             {
-                return NoMoreFallingFuelModSystem.Config.PreventCharcoalPileFalling;
+                return ShouldPreventCharcoalFalling(NoMoreFallingFuelModSystem.Config.PreventCharcoalPileFalling);
             }
 
             if (instance.block is BlockCoalPile)
             {
                 var be = world.BlockAccessor.GetBlockEntity(pos) as BlockEntityCoalPile;
                 var itemCode = be?.inventory[0]?.Itemstack?.Collectible?.Code?.Path;
-                if (itemCode != null && NoMoreFallingFuelModSystem.ProtectedItemSet.Contains(itemCode))
-                {
-                    return true;
-                }
+                return ShouldPreventCoalFalling(itemCode, NoMoreFallingFuelModSystem.ProtectedItemSet);
             }
 
             return false;
+        }
+
+        internal static bool ShouldPreventCharcoalFalling(bool configValue)
+        {
+            return configValue;
+        }
+
+        internal static bool ShouldPreventCoalFalling(string itemCode, HashSet<string> protectedItems)
+        {
+            return itemCode != null && protectedItems.Contains(itemCode);
         }
     }
 }
